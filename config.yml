@@ -5,5 +5,4 @@ build:
   python_packages:
     - "git+https://github.com/huggingface/transformers.git@main"
     - "accelerate"
-    - "peft"
     - "boto3"
