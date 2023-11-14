@@ -1,7 +1,6 @@
 import boto3
 import os
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from peft import PeftModel
 import torch
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
