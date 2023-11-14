@@ -12,9 +12,9 @@ S3_BUCKET_NAME = "ask-trained-models"
 
 
 BASE_MODEL = "codellama/CodeLlama-34b-Python-hf"
+
 TRAINING_ID = "488a0fda-3992-4dbe-91e6-d0383e8ef5eb"
 CHECKPOINT = "1700"
-
 FOLDER_NAME = f"{S3_FOLDER_PREFIX}/{TRAINING_ID}/Checkpoints/checkpoint-{CHECKPOINT}"
 
 LORA_PATH= f"lora_model/{TRAINING_ID}/"
@@ -35,7 +35,7 @@ class InferlessPythonModel:
         objects = s3.list_objects_v2(Bucket=S3_BUCKET_NAME, Prefix=FOLDER_NAME)
         for obj in objects["Contents"]:
             key = obj["Key"]
-            file_name = os.path.join(f"lora_model/{TRAINING_ID}", key.replace(FOLDER_NAME + "/", ""))
+            file_name = os.path.join(LORA_PATH, key.replace(FOLDER_NAME + "/", ""))
             os.makedirs(os.path.dirname(file_name), exist_ok=True)
             s3.download_file(S3_BUCKET_NAME, key, file_name)
         
