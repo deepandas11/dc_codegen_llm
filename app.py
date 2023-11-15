@@ -43,7 +43,7 @@ class InferlessPythonModel:
         input_ids = self.tokenizer(prompt, return_tensors='pt').input_ids.cuda()
         output = self.model.generate(inputs=input_ids, temperature=0.7, max_new_tokens=600)
         result = self.tokenizer.decode(output[0])
-        return {"generated_result": result}
+        return {"generated_result": "Hello there"}
 
     def finalize(self,args):
         self.tokenizer = None
